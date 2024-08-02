@@ -1,0 +1,49 @@
+/* selector {
+    property: value
+} */
+
+/* html {
+    background-color: blue;
+    color: white
+} */
+
+body {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #131757; /* Example background color */
+}
+
+.phrase-container {
+    text-align: center;
+    margin: 0 auto;
+    width: 400px
+}
+
+
+.math-finance {
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center;     /* Center vertically */
+    font-size: 80px;
+    color: white;
+    white-space: nowrap; 
+    width: 100%;
+    text-align: center;
+    font-family: Arial;
+    font-weight: bold;
+}
+
+.uci {
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center;     /* Center vertically */
+    font-size: 60px;
+    color: white;
+    width: 100%;
+    text-align: center;
+    font-family: Arial;
+    font-weight: bold;
+}
