@@ -36,40 +36,67 @@ body {
     align-items: center;
     height: 100vh;
     background-color: #131757; /* Example background color */
+    font-family: 'Rubik_Doodle_Triangles', sans-serif;
+
 }
 
+/* Position the container for absolute positioning */
 .phrase-container {
-    text-align: center;
-    margin: 0 auto;
-    width: 400px
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    margin-top: 0px; /* Adjust the top margin to control the vertical position */
 }
 
 
+/* Style for the main title */
 .math-finance {
-    display: flex;
-    justify-content: center; /* Center horizontally */
-    align-items: center;     /* Center vertically */
+    position: absolute;
+    top: 120px; /* Adjust the position relative to the container */
+    left: 50%; /* Center the text horizontally */
+    transform: translateX(-50%); /* Ensure the text is centered */
     font-size: 80px;
     color: white;
-    white-space: nowrap; 
-    width: 100%;
-    text-align: center;
+    white-space: nowrap;
     font-family: 'Jua-Regular', sans-serif;
     font-weight: bold;
-    
+    z-index: 2; /* Ensure the text is above the image */
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.8), 0 0 10px rgba(255, 255, 255, 0.6), 0 0 15px rgba(255, 255, 255, 0.4);
 }
 
+/* Style for the subtitle */
 .uci {
-    display: flex;
-    justify-content: center; /* Center horizontally */
-    align-items: center;     /* Center vertically */
+    position: absolute;
+    top: 210px; /* Adjust the position relative to the container */
+    left: 50%; /* Center the text horizontally */
+    transform: translateX(-50%); /* Ensure the text is centered */
     font-size: 60px;
     color: white;
-    width: 100%;
-    text-align: center;
+    white-space: nowrap;
     font-family: 'Jua-Regular', sans-serif;
-    font-weight: bold; 
+    font-weight: bold;
+    z-index: 2; /* Ensure the text is above the image */
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.8), 0 0 10px rgba(255, 255, 255, 0.6), 0 0 15px rgba(255, 255, 255, 0.4);
 }
+
+/* Style for the image */
+.template-image {
+    text-align: center;
+    
+    margin-top: 0px; /* Adjust the spacing as needed */
+}
+
+#template-image {
+    width: 600px; /* Adjust the width or height as necessary */
+    max-width: 100%; /* Make sure it’s responsive */
+    height: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 200px;
+
+}
+
 
 /* Reset some default styles */
 body, ul, li {
@@ -78,10 +105,6 @@ body, ul, li {
     list-style: none;
 }
 
-/* Basic styling for the body */
-body {
-    font-family: 'Rubik_Doodle_Triangles', sans-serif;
-}
 
 
 /* Styling for the header and navbar */
