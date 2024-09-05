@@ -33,6 +33,7 @@ body {
     padding: 0;
     box-sizing: border-box;
     color: #ffffff;
+    /* overflow: hidden; Ensure no overflow of pseudo-elements */
 }
 
 /* Main Colors */
@@ -119,8 +120,6 @@ body {
     color: var(--white);
 }
 
-
-
 .phrase-container {
     position: absolute;
     width: 100%;
@@ -180,10 +179,48 @@ body {
     color: var(--dark-gray);
 }
 
-.workshops {
+/* .workshops {
     background-color: var(--navy-blue);
     color: var(--white);
+} */
+
+/* Workshops Section */
+.workshops {
+    position: relative;
+    color: var(--white);
+    background: linear-gradient(to right, #000000, #3533CD);
+    overflow: hidden;
+    z-index: 1;
 }
+
+/* Pseudo-element for background image with reduced transparency */
+.workshops::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('Binary_Background.png') repeat;
+    background-size: cover; /* Ensure the image covers the entire area */
+    opacity: 0.5; /* Adjust opacity to make the image more visible */
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* Gradient overlay to blend edges (optional) */
+.workshops::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.3) 100%);
+    z-index: 0;
+    pointer-events: none;
+}
+
 
 .events {
     background-color: var(--light-gray);
@@ -191,8 +228,38 @@ body {
 }
 
 .team {
-    background-color: var(--navy-blue);
     color: var(--white);
+    background: linear-gradient(to right, #000000, #3533CD);
+    overflow: hidden;
+    z-index: 1;
+}
+
+/* Pseudo-element for background image with reduced transparency */
+.team::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('Binary_Background.png') repeat;
+    background-size: cover; /* Ensure the image covers the entire area */
+    opacity: 0.5; /* Adjust opacity to make the image more visible */
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* Gradient overlay to blend edges (optional) */
+.team::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.3) 100%);
+    z-index: 0;
+    pointer-events: none;
 }
 
 .contact {
@@ -211,6 +278,14 @@ p {
     line-height: 1.6;
 }
 
+/* Workshop Heading */
+.workshop-heading {
+    position: relative; /* Ensures z-index takes effect */
+    text-align: center; /* Center align the heading */
+    z-index: 2; /* Higher z-index to appear above the background */
+    margin-bottom: 20px; /* Adds some space below the heading */
+}
+
 /* Workshop Items */
 .workshop-list {
     display: flex;
@@ -218,6 +293,7 @@ p {
     gap: 20px;
     max-width: 900px;
     margin: 0 auto;
+    z-index: 2; /* Higher z-index to appear above the background */
 }
 
 .workshop-item {
@@ -228,18 +304,21 @@ p {
     margin: 10px 0;
     border-radius: 10px;
     overflow: hidden;
+    z-index: 2; /* Higher z-index to appear above the background */
 }
 
 .workshop-item img {
     width: 50%;
     height: auto;
     object-fit: cover;
+    z-index: 2; /* Higher z-index to appear above the background */
 }
 
 .workshop-info {
     padding: 20px;
     width: 50%;
     background-color: rgba(255, 255, 255, 0.1);
+    z-index: 2; /* Higher z-index to appear above the background */
 }
 
 /* Carousel */
