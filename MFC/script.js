@@ -6,6 +6,17 @@ document.querySelector('.navbar-toggle').addEventListener('click', () => {
     navbarLinks.classList.toggle('active');
 });
 
+// Detect scroll and change background color
+window.addEventListener("scroll", function() {
+    const navbar = document.querySelector(".navbar");
+
+    if (window.scrollY > 50) {  // Adjust this value to control when the change occurs
+        navbar.style.backgroundColor = "var(--navy-blue)";
+    } else {
+        navbar.style.backgroundColor = "transparent";
+    }
+});
+
 // Carousel Controls
 const prevButton = document.querySelector('.carousel-controls .prev');
 const nextButton = document.querySelector('.carousel-controls .next');
