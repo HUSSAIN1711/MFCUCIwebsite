@@ -24,7 +24,7 @@ const carouselItems = document.querySelector('.carousel-items');
 let currentIndex = 0;
 
 const updateCarousel = () => {
-    const itemsCount = document.querySelectorAll('.carousel-item').length;
+    const itemsCount = document.querySelectorAll('.carousel-items').length;
     const itemWidth = 100 / itemsCount;
     carouselItems.style.transform = `translateX(-${currentIndex * itemWidth}%)`;
 };

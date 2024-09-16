@@ -66,11 +66,13 @@ body, html {
 /* Hover Effect: Change background on hover */
 .navbar:hover {
     background-color: var(--navy-blue); /* Color appears on hover */
+    z-index:11;
 }
 
 /* Optional: Change link colors or any additional styles for hover */
 .navbar a:hover {
     color: var(--light-blue); /* Example link hover effect */
+    z-index:11;
 }
 
 
@@ -118,10 +120,28 @@ body, html {
     text-decoration: none;
     font-size: 20px;
 }
-/* 
-header:hover {
-    background-color: rgb(155, 187, 255);
-} */
+
+/* Add a smooth underline effect using a pseudo-element */
+.navbar-links a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: var(--white); /* White underline */
+    transition: width 0.3s ease;
+}
+
+.navbar-links a:hover {
+    color: #f4f4f4; /* Slightly lighter white on hover */
+}
+
+/* Extend the underline on hover */
+.navbar-links a:hover::after {
+    width: 100%; /* Full width underline */
+}
+
 
 /* Sections */
 .section {
@@ -134,7 +154,7 @@ header:hover {
 }
 
 /* Home, Workshop, and Events sections */
-#home, #workshop, #events {
+#home, #events, #past-events {
     min-height: 100vh; /* Ensure these sections are at least 100vh */
     display: flex;
     flex-direction: column;
@@ -147,17 +167,18 @@ header:hover {
 .home {
     position: relative;
     width: 100%;
-    height: 100%;
+    min-height: 100vh; /* Ensure the section has enough height */
     background: linear-gradient(to right, #000000, #3533CD);
-    /* background: none; Temporarily remove background */
     background-size: cover;
-    background-position: center top;
-    background-repeat: no-repeat; /* Prevent image repetition */
-    /* border: 2px solid red; Add a border to see if it's visible */
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centers content vertically */
     align-items: center;
 }
 
-/* Pseudo-element for background image with reduced transparency */
+/* Pseudo-element for background image */
 .home::before {
     content: "";
     position: absolute;
@@ -166,13 +187,13 @@ header:hover {
     width: 100%;
     height: 100%;
     background: url('Binary_Background.png') repeat;
-    background-size: cover; /* Ensure the image covers the entire area */
-    opacity: 0.5; /* Adjust opacity to make the image more visible */
+    background-size: cover;
+    opacity: 0.5;
     z-index: 0;
     pointer-events: none;
 }
 
-/* Gradient overlay to blend edges (optional) */
+/* Gradient overlay */
 .home::after {
     content: "";
     position: absolute;
@@ -185,22 +206,33 @@ header:hover {
     pointer-events: none;
 }
 
-
-.phrase-container {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    margin-top: 0;
-    color: white; /* Adjust text color to be visible over the new background */
-    display: flex;
-    align-items: center;
-    justify-content: center; /* Center content vertically and horizontally */
-    text-align: center;
+.logo-image {
+    z-index: 1;
+    pointer-events: none;
 }
 
+#logo-image {
+    width: 600px;
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin-top: 250px; /* Add some space between the logo and the top of the section */
+}
+
+/* Phrase container (Math Finance and UCI text) */
+.phrase-container {
+    z-index: 1;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-bottom: 50px; /* Ensure space between the text and the logo */
+}
 
 .math-finance, .uci {
-    position: absolute;
+     position: absolute;
     left: 50%; /* Center the text horizontally */
     transform: translateX(-50%); /* Ensure the text is centered */
     color: white;
@@ -222,22 +254,6 @@ header:hover {
     font-size: 80px;
 }
 
-.logo-image {
-    position: absolute; /* Fixes the image in place */
-    top: 270px; /* Adjust this value to position the image higher */
-    left: 50%; /* Center the image horizontally */
-    transform: translateX(-50%); /* Center the image horizontally */
-    z-index: 1; /* Ensure it stays above other content */
-    pointer-events: none; /* Ensures the image doesn't interfere with clicking or scrolling */
-}
-
-#logo-image {
-    width: 600px; /* Adjust the width or height as necessary */
-    max-width: 100%; /* Make sure it’s responsive */
-    height: auto;
-    display: block;
-}
-
 .about {
     background-color: var(--light-gray);
     color: var(--dark-gray);
@@ -249,8 +265,8 @@ header:hover {
     font-size: 18px;
 }
 
-/* Workshops Section */
-.workshops {
+/* Upcoming Events Section */
+.events {
     position: relative;
     color: var(--white);
     background: linear-gradient(to right, #000000, #3533CD);
@@ -259,7 +275,7 @@ header:hover {
 }
 
 /* Pseudo-element for background image with reduced transparency */
-.workshops::before {
+.events::before {
     content: "";
     position: absolute;
     top: 0;
@@ -274,7 +290,7 @@ header:hover {
 }
 
 /* Gradient overlay to blend edges (optional) */
-.workshops::after {
+.events::after {
     content: "";
     position: absolute;
     top: 0;
@@ -287,10 +303,90 @@ header:hover {
 }
 
 
-.events {
+/* Past Events Section */
+.past-events {
+    padding: 50px 20px;
     background-color: var(--light-gray);
-    color: var(--dark-gray);
 }
+
+.past-events h2 {
+    text-align: center;
+    font-family: 'Jua-Regular', sans-serif;
+    font-size: 36px;
+    color: var(--dark-gray);
+    margin-bottom: 40px;
+}
+
+.past-events-grid {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    gap: 30px;
+    justify-content: center;
+}
+
+.past-event-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.past-event-card:hover {
+    transform: translateY(-5px); /* Lift the card on hover */
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.2);
+}
+
+.past-event-image {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    transition: transform 0.3s ease-in-out;
+}
+
+.past-event-card:hover .past-event-image {
+    transform: scale(1.05); /* Zoom in the image slightly on hover */
+}
+
+/* Event Title */
+.past-event-title {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - 20px);
+    text-align: center;
+    color: var(--white);
+    background-color: rgba(0,0,0,0.7);
+    padding: 5px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+
+}
+
+/* Event Description on Hover */
+.past-event-description {
+    position: absolute;
+    top:0;
+    width: 90%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.8); /* Dark overlay */
+    color: white;
+    padding: 20px;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    text-align: center;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+.past-event-card:hover .past-event-description {
+    opacity: 1;
+}
+
 
 .team {
     position: relative;
@@ -406,48 +502,14 @@ p {
     line-height: 1.6;
 }
 
-/* Workshop Heading */
-.workshop-heading {
+/* Upcoming events Heading */
+.events-heading {
     position: relative; /* Ensures z-index takes effect */
     text-align: center; /* Center align the heading */
     z-index: 2; /* Higher z-index to appear above the background */
     margin-bottom: 20px; /* Adds some space below the heading */
 }
 
-/* Workshop Items */
-.workshop-list {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    max-width: 900px;
-    margin: 0 auto;
-    z-index: 2; /* Higher z-index to appear above the background */
-}
-
-.workshop-item {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    margin: 10px 0;
-    border-radius: 10px;
-    overflow: hidden;
-    z-index: 2; /* Higher z-index to appear above the background */
-}
-
-.workshop-item img {
-    width: 50%;
-    height: auto;
-    object-fit: cover;
-    z-index: 2; /* Higher z-index to appear above the background */
-}
-
-.workshop-info {
-    padding: 20px;
-    width: 50%;
-    background-color: var(--dark-gray);
-    z-index: 2; /* Higher z-index to appear above the background */
-}
 
 /* Carousel */
 .carousel {
